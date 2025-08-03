@@ -2,6 +2,7 @@ package suminjn.test0724.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,7 +22,8 @@ public class TourApiService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ContentRepository contentRepository;
 
-    private final String SERVICE_KEY = "sb91vGxbKi8E8nw2xmgsZ%2BtAYpaM3yR0KWyUKbUiR6r82H%2BXMZbFBuxGArX%2B5jQljOi39U0Fb%2FYnUtWVCQTecA%3D%3D";
+    @Value("${tour-api-service-key}")
+    private String SERVICE_KEY;
 
     public void syncTourContents() {
         URI uri = UriComponentsBuilder
